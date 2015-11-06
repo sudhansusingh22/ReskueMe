@@ -1,0 +1,98 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="ResKueMe.ContactsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:data ="clr-namespace:ResKueMe"
+    xmlns:controls="clr-namespace:ResKueMe.Controls"
+    xmlns:converter ="clr-namespace:ResKueMe.Converter"
+    xmlns:appbarUtils="clr-namespace:AppBarUtils;assembly=AppBarUtils"
+   xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar Mode="Default" Opacity="1.0" IsMenuEnabled="True" IsVisible="True">            
+            <shell:ApplicationBarIconButton IconUri="/Images/save.png"  Text="Save">                
+            </shell:ApplicationBarIconButton>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Click="PrivacyPolicyCommand" Text="Privacy Policy"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+       
+    </phone:PhoneApplicationPage.ApplicationBar>
+    <i:Interaction.Behaviors>
+        <appbarUtils:AppBarItemCommand Id="Save" Command="{Binding SaveResKueContactsCommand}"/>
+    </i:Interaction.Behaviors>
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="ContactItemTemplate">
+            <Grid>
+                <Grid.RowDefinitions>                      
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox  Grid.Row="0" Grid.Column="0" IsChecked="{Binding Path=IsSelected, Mode=TwoWay}"/>
+            <StackPanel Grid.Column="1" Grid.Row="0">               
+                 
+                <TextBlock Text="{Binding Path=Contact.DisplayName, Mode=OneWay}"                                        
+                                       FontSize="{StaticResource PhoneFontSizeExtraLarge}" 
+                                       FontFamily="{StaticResource PhoneFontFamilySemiLight}"/>
+
+                    <ListBox ItemsSource="{Binding Path= Contact.PhoneNumbers}" Height="60"  Margin="36,0,0,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Path=Kind, Mode=OneWay}" />
+                                <TextBlock Grid.Column="1" Text=":  " />
+                                <TextBlock Grid.Column="2" Text="{Binding Path=PhoneNumber, Mode=OneWay}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>                 
+            </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <converter:ContactPictureConverter x:Key="ContactPictureConverter" />
+    </phone:PhoneApplicationPage.Resources>
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>            
+        </Grid.RowDefinitions>      
+       
+        <Grid x:Name="ContentPanel" Grid.Row="0">
+            <phone:Pivot  x:Name="SamplePivot"
+                SelectionChanged="OnPivotSelectionChanged">
+                <phone:PivotItem x:Name="MultiselectLbxItem">
+                    <phone:LongListSelector x:Name="ContactList" ScrollViewer.VerticalScrollBarVisibility="Visible"                                                
+                                                ItemsSource="{Binding ResKueContactsList}"
+                                                Height="648"
+                                                LayoutMode="List"                                                 
+                                                toolkit:TiltEffect.IsTiltEnabled="True"
+                                                ItemTemplate="{StaticResource ContactItemTemplate}"
+                                               
+                            >
+
+
+                    </phone:LongListSelector>
+                </phone:PivotItem>
+            </phone:Pivot>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

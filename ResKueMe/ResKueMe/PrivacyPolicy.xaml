@@ -1,0 +1,48 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="ResKueMe.PrivacyPolicy"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="ResKueMe Privacy Policy" Style="{StaticResource PhoneTextNormalStyle}" FontFamily="Cambria" FontSize="35"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ScrollViewer HorizontalAlignment="Left" Height="636" Margin="10,10,0,0" VerticalAlignment="Top" Width="412">
+                <TextBlock TextWrapping="Wrap">
+                	<Run Text="This Privacy Policy explains our policy regarding the collection and use of your information."/>
+                	<LineBreak/>
+                	<Run Text="What information do we collect?"/>
+                	<LineBreak/>
+                	<Run Text="ResKueMe uses your Facebook authentication email and password. The never application never shares the log in information to any third party. It also uses your location information services."/>
+                	<LineBreak/>
+                	<Run Text="What do we use your information for? "/>
+                	<LineBreak/>
+                	<Run Text="ResKueMe uses your Facebook authentication information and location information services and posts it on your Facebook profile in case the  app's &quot;Raise Alarm&quot;  button is clicked. We also remind you that you can always disable all access to location information by applications and collection of location information by the Windows Phone location service at any time by going to Settings &gt; Location and toggling the location switch to OFF. The information related to your location is also sent to your favorite contacts via sms. You can set your favorite contacts on click of the settings button on main page."/>
+                </TextBlock>
+            </ScrollViewer>
+
+        </Grid>
+    </Grid>
+
+
+</phone:PhoneApplicationPage>
