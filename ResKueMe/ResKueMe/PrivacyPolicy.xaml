@@ -33,7 +33,7 @@
                 	<LineBreak/>
                 	<Run Text="What information do we collect?"/>
                 	<LineBreak/>
-                	<Run Text="ResKueMe uses your Facebook authentication email and password. The never application never shares the log in information to any third party. It also uses your location information services."/>
+                	<Run Text="ResKueMe uses your Facebook authentication email and password. The application never shares the log in information to any third party. It also uses your location information services."/>
                 	<LineBreak/>
                 	<Run Text="What do we use your information for? "/>
                 	<LineBreak/>
